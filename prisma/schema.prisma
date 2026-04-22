@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      String   @default("FIELD_AGENT") // SQLite doesn't natively support enums, using String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  assignedFields Field[]       @relation("FieldAgent")
+  updates        FieldUpdate[]
+}
+
+model Field {
+  id           String      @id @default(cuid())
+  name         String
+  cropType     String
+  plantingDate DateTime
+  stage        String      @default("PLANTED") // Enums mocked with String in SQLite
+  sizeHectares Float?
+  location     String?     // e.g. county or GPS string
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  agentId      String?
+  agent        User?       @relation("FieldAgent", fields: [agentId], references: [id])
+  updates      FieldUpdate[]
+}
+
+model FieldUpdate {
+  id        String   @id @default(cuid())
+  fieldId   String
+  agentId   String
+  stage     String
+  notes     String?
+  createdAt DateTime @default(now())
+
+  field     Field    @relation(fields: [fieldId], references: [id], onDelete: Cascade)
+  agent     User     @relation(fields: [agentId], references: [id])
+}
