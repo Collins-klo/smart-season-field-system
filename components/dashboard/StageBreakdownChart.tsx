@@ -49,17 +49,17 @@ export function StageBreakdownChart({ data }: StageBreakdownChartProps) {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: 'var(--color-surface)', 
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: 'var(--color-surface)',
                     borderColor: 'var(--color-border)',
                     borderRadius: '8px'
-                  }} 
-                  itemStyle={{ color: 'var(--color-text-primary)' }} 
+                  }}
+                  itemStyle={{ color: 'var(--color-text-primary)' }}
                 />
-                <Legend 
-                  verticalAlign="bottom" 
-                  height={36} 
+                <Legend
+                  verticalAlign="bottom"
+                  height={36}
                   iconType="circle"
                   wrapperStyle={{ fontSize: '12px', color: 'var(--color-text-secondary)' }}
                 />

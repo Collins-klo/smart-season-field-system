@@ -56,7 +56,7 @@
   --color-popover: var(--surface);
   --color-card-foreground: var(--text-primary);
   --color-card: var(--surface);
-  
+
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -67,60 +67,97 @@
 }
 
 :root {
-  --background: #F7F5F0;
-  --foreground: #1C1A14;
-  --surface: #FFFFFF;
-  --surface-muted: #EEE9DF;
-  --border: #D6CEBC;
-  
-  --text-primary: #1C1A14;
-  --text-secondary: #6B6352;
-  --text-muted: #9E9580;
+  /* Dark theme as default — colors from provided dark palette */
+  --background: #022c22;
+  --foreground: #fef3c7;
+  --card: #053a2d;
+  --card-foreground: #fef3c7;
+  --popover: #053a2d;
+  --popover-foreground: #fef3c7;
+  --primary: #10b981;
+  --primary-foreground: #022c22;
+  --secondary: #fbbf24;
+  --secondary-foreground: #451a03;
+  --muted: #064e3b;
+  --muted-foreground: #a7f3d0;
+  --accent: #92400e;
+  --accent-foreground: #fef3c7;
+  --destructive: #991b1b;
+  --destructive-foreground: #fef2f2;
+  --border: #065f46;
+  --input: #053a2d;
+  --ring: #fbbf24;
 
-  --brand-primary: #2D6A4F;
-  --brand-secondary: #40916C;
-  --brand-light: #B7E4C7;
-  --brand-xlight: #D8F3DC;
+  --chart-1: #10b981;
+  --chart-2: #d97706;
+  --chart-3: #34d399;
+  --chart-4: #fcd34d;
+  --chart-5: #fb923c;
 
-  --earth-brown: #6B4226;
-  --earth-tan: #C8A96E;
-  --earth-sand: #E9DEC8;
+  --sidebar: #022c22;
+  --sidebar-foreground: #fef3c7;
+  --sidebar-primary: #10b981;
+  --sidebar-primary-foreground: #022c22;
+  --sidebar-accent: #064e3b;
+  --sidebar-accent-foreground: #fef3c7;
+  --sidebar-border: #065f46;
+  --sidebar-ring: #10b981;
 
-  --status-active: #2D6A4F;
-  --status-active-bg: #D8F3DC;
-  --status-at-risk: #B45309;
-  --status-at-risk-bg: #FEF3C7;
-  --status-completed: #374151;
-  --status-completed-bg: #F3F4F6;
-  
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  --input: #D6CEBC;
-  --ring: #2D6A4F;
-  
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: #FFFFFF;
-  --sidebar-foreground: #1C1A14;
-  --sidebar-primary: #2D6A4F;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #D8F3DC;
-  --sidebar-accent-foreground: #2D6A4F;
-  --sidebar-border: #D6CEBC;
-  --sidebar-ring: #2D6A4F;
+  /* Project-specific semantic tokens */
+  --surface: #053a2d;
+  --surface-muted: #064e3b;
+
+  --text-primary: #fef3c7;
+  --text-secondary: #a7f3d0;
+  --text-muted: #a7f3d0;
+
+  --brand-primary: #10b981;
+  --brand-secondary: #fbbf24;
+  --brand-light: #064e3b;
+  --brand-xlight: #064e3b;
+
+  --earth-brown: #fbbf24;
+  --earth-tan: #a7f3d0;
+  --earth-sand: #064e3b;
+
+  --status-active: #10b981;
+  --status-active-bg: #064e3b;
+  --status-at-risk: #fbbf24;
+  --status-at-risk-bg: #064e3b;
+  --status-completed: #a7f3d0;
+  --status-completed-bg: #064e3b;
+
+  --radius: 1.25rem;
+
+  --font-sans: Nunito, system-ui, sans-serif;
+  --font-serif: Instrument Serif, serif;
+  --font-mono: JetBrains Mono, monospace;
+
+  --shadow-x: 0px;
+  --shadow-y: 12px;
+  --shadow-blur: 32px;
+  --shadow-spread: 0px;
+  --shadow-opacity: 0.4;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --shadow-2xs: 0px 12px 32px 0px hsl(0 0% 0% / 0.20);
+  --shadow-xs: 0px 12px 32px 0px hsl(0 0% 0% / 0.20);
+  --shadow-sm: 0px 12px 32px 0px hsl(0 0% 0% / 0.40), 0px 1px 2px -1px hsl(0 0% 0% / 0.40);
+  --shadow: 0px 12px 32px 0px hsl(0 0% 0% / 0.40), 0px 1px 2px -1px hsl(0 0% 0% / 0.40);
+  --shadow-md: 0px 12px 32px 0px hsl(0 0% 0% / 0.40), 0px 2px 4px -1px hsl(0 0% 0% / 0.40);
+  --shadow-lg: 0px 12px 32px 0px hsl(0 0% 0% / 0.40), 0px 4px 6px -1px hsl(0 0% 0% / 0.40);
+  --shadow-xl: 0px 12px 32px 0px hsl(0 0% 0% / 0.40), 0px 8px 10px -1px hsl(0 0% 0% / 0.40);
+  --shadow-2xl: 0px 12px 32px 0px hsl(0 0% 0% / 1.00);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     @apply font-sans;
   }
@@ -130,7 +167,10 @@
 body::before {
   content: "";
   position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opactiy='0.05'/%3E%3C/svg%3E");
   opacity: 0.03;

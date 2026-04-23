@@ -16,13 +16,13 @@ export function FieldUpdateTimeline({ updates }: { updates: UpdateWithAgent[] })
       {sorted.map((update, index) => {
         const isLatest = index === 0;
         const initals = update.agent?.name?.split(' ').map(n => n[0]).join('') || "U";
-        
+
         return (
           <div key={update.id} className="relative pl-6">
             <div className={`absolute -left-3.5 top-0 w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold ring-4 ring-[var(--color-surface)] ${isLatest ? 'bg-[var(--color-brand-primary)] text-white' : 'bg-[var(--color-surface-muted)] text-[var(--color-text-secondary)]'}`}>
               {initals}
             </div>
-            
+
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 mb-1">
               <h4 className="font-medium text-[var(--color-text-primary)] text-sm">
                 Status changed to <span className="uppercase text-[var(--color-brand-primary)] font-bold">{update.stage}</span>
@@ -31,11 +31,11 @@ export function FieldUpdateTimeline({ updates }: { updates: UpdateWithAgent[] })
                 {format(new Date(update.createdAt), 'MMM d, yyyy h:mm a')}
               </span>
             </div>
-            
+
             <p className="text-xs text-[var(--color-text-secondary)] mb-2">
               Logged by {update.agent?.name || "System"}
             </p>
-            
+
             {update.notes && (
               <div className="bg-[var(--color-surface-muted)]/50 p-3 rounded-md border border-[var(--color-border)] text-sm text-[var(--color-text-primary)] relative">
                 {/* Speech bubble arrow */}
