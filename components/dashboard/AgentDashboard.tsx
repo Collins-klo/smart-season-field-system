@@ -23,19 +23,19 @@ export function AgentDashboard({ fields, user }: { fields: FieldWithUpdates[], u
   return (
     <div className="space-y-6 h-full flex flex-col">
       <div>
-        <h2 className="text-2xl font-heading font-semibold text-[var(--color-text-primary)]">
+        <h2 className="text-2xl font-heading font-semibold text-foreground">
           Good morning, {user?.name?.split(' ')[0] || "Agent"}
         </h2>
-        <p className="text-[var(--color-text-secondary)] text-sm">{today}</p>
+        <p className="text-muted-foreground text-sm">{today}</p>
       </div>
 
       <div className="flex-1 min-h-0 pb-4">
         <div className="grid grid-cols-4 gap-4 h-full">
           {columns.map(col => (
-            <div key={col.stage} className="min-w-0 flex flex-col bg-[var(--color-surface-muted)] rounded-xl border border-[var(--color-border)]">
-              <div className="p-3 border-b border-[var(--color-border)] flex justify-between items-center bg-[var(--color-surface)] rounded-t-xl">
-                <h3 className="font-medium text-[var(--color-text-primary)]">{col.title}</h3>
-                <span className="bg-[var(--color-brand-xlight)] text-[var(--color-brand-primary)] text-xs font-bold px-2 py-0.5 rounded-full">
+            <div key={col.stage} className="min-w-0 flex flex-col bg-muted/30 rounded-xl border border-border">
+              <div className="p-3 border-b border-border flex justify-between items-center bg-card rounded-t-xl">
+                <h3 className="font-medium text-foreground">{col.title}</h3>
+                <span className="bg-primary/10 text-primary text-xs font-bold px-2 py-0.5 rounded-full">
                   {col.data.length}
                 </span>
               </div>
@@ -45,7 +45,7 @@ export function AgentDashboard({ fields, user }: { fields: FieldWithUpdates[], u
                     <FieldCard key={field.id} field={field} />
                   ))
                 ) : (
-                  <div className="pt-4 text-center text-sm text-[var(--color-text-muted)]">
+                  <div className="pt-4 text-center text-sm text-muted-foreground">
                     No fields here.
                   </div>
                 )}

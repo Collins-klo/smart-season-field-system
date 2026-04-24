@@ -45,7 +45,7 @@ export function AdminDashboard({ fields }: { fields: FieldWithDetails[] }) {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-heading font-semibold text-[var(--color-text-primary)]">Command Center</h2>
+      <h2 className="text-2xl font-heading font-semibold text-foreground">Command Center</h2>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatsCard title="Total Fields" value={fields.length} icon={<Map className="w-4 h-4" />} />
@@ -55,11 +55,11 @@ export function AdminDashboard({ fields }: { fields: FieldWithDetails[] }) {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl shadow-sm overflow-hidden flex flex-col">
-          <div className="p-4 border-b border-[var(--color-border)] flex items-center justify-between">
-            <h3 className="font-heading font-medium text-lg text-[var(--color-text-primary)]">All Fields</h3>
+        <div className="lg:col-span-2 bg-card border border-border rounded-xl shadow-sm overflow-hidden flex flex-col">
+          <div className="p-4 border-b border-border flex items-center justify-between">
+            <h3 className="font-heading font-medium text-lg text-foreground">All Fields</h3>
             <Link href="/fields/new">
-              <Button size="sm" className="bg-[var(--color-brand-primary)] hover:bg-[var(--color-brand-secondary)] text-[var(--color-surface)]">
+              <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
                 Add Field
               </Button>
             </Link>
@@ -67,30 +67,30 @@ export function AdminDashboard({ fields }: { fields: FieldWithDetails[] }) {
           <div className="overflow-x-auto flex-1">
             <Table>
               <TableHeader>
-                <TableRow className="bg-[var(--color-surface-muted)] hover:bg-[var(--color-surface-muted)] border-b-[var(--color-border)]">
-                  <TableHead className="text-[var(--color-text-secondary)] font-medium">Name</TableHead>
-                  <TableHead className="text-[var(--color-text-secondary)] font-medium">Crop</TableHead>
-                  <TableHead className="text-[var(--color-text-secondary)] font-medium">Agent</TableHead>
-                  <TableHead className="text-[var(--color-text-secondary)] font-medium">Stage</TableHead>
-                  <TableHead className="text-[var(--color-text-secondary)] font-medium">Status</TableHead>
+                <TableRow className="bg-muted hover:bg-muted border-b-border">
+                  <TableHead className="text-muted-foreground font-medium">Name</TableHead>
+                  <TableHead className="text-muted-foreground font-medium">Crop</TableHead>
+                  <TableHead className="text-muted-foreground font-medium">Agent</TableHead>
+                  <TableHead className="text-muted-foreground font-medium">Stage</TableHead>
+                  <TableHead className="text-muted-foreground font-medium">Status</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {fields.slice(0, 10).map((field) => (
-                  <TableRow key={field.id} className="border-b-[var(--color-border)] hover:bg-[var(--color-brand-xlight)]/50 transition-colors cursor-pointer relative">
-                    <TableCell className="font-medium text-[var(--color-text-primary)]">
+                  <TableRow key={field.id} className="border-b-border hover:bg-primary/5 transition-colors cursor-pointer relative">
+                    <TableCell className="font-medium text-foreground">
                       <Link href={`/fields/${field.id}`} className="absolute inset-0" aria-label="View field details"></Link>
                       {field.name}
                     </TableCell>
-                    <TableCell className="text-[var(--color-text-secondary)]">{field.cropType}</TableCell>
-                    <TableCell className="text-[var(--color-text-secondary)]">{field.agent?.name || "Unassigned"}</TableCell>
+                    <TableCell className="text-muted-foreground">{field.cropType}</TableCell>
+                    <TableCell className="text-muted-foreground">{field.agent?.name || "Unassigned"}</TableCell>
                     <TableCell><StageBadge stage={field.stage as FieldStage} /></TableCell>
                     <TableCell><StatusBadge status={computeFieldStatus(field)} /></TableCell>
                   </TableRow>
                 ))}
                 {fields.length === 0 && (
                   <TableRow>
-                    <TableCell colSpan={5} className="text-center py-8 text-[var(--color-text-muted)]">
+                    <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
                       No fields available.
                     </TableCell>
                   </TableRow>
@@ -99,8 +99,8 @@ export function AdminDashboard({ fields }: { fields: FieldWithDetails[] }) {
             </Table>
           </div>
           {fields.length > 10 && (
-            <div className="p-3 border-t border-[var(--color-border)] text-center bg-[var(--color-surface-muted)]">
-               <Link href="/fields" className="text-sm font-medium text-[var(--color-brand-primary)] hover:underline">View All Fields</Link>
+            <div className="p-3 border-t border-border text-center bg-muted">
+               <Link href="/fields" className="text-sm font-medium text-primary hover:underline">View All Fields</Link>
             </div>
           )}
         </div>
@@ -108,31 +108,31 @@ export function AdminDashboard({ fields }: { fields: FieldWithDetails[] }) {
         <div className="space-y-6 lg:col-span-1 flex flex-col min-h-0 h-full">
           <StageBreakdownChart data={chartData} />
           
-          <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl shadow-sm p-4 flex-1">
-            <h3 className="font-heading font-medium text-lg text-[var(--color-text-primary)] border-b border-[var(--color-border)] pb-2 mb-4">
+          <div className="bg-card border border-border rounded-xl shadow-sm p-4 flex-1">
+            <h3 className="font-heading font-medium text-lg text-foreground border-b border-border pb-2 mb-4">
               Recent Activity
             </h3>
             <div className="space-y-4">
               {recentUpdates.length > 0 ? recentUpdates.map((update) => (
-                <div key={update.id} className="flex gap-3 items-start border-b border-[var(--color-border)] pb-3 last:border-0 last:pb-0">
-                  <div className="w-8 h-8 rounded-full bg-[var(--color-brand-xlight)] flex items-center justify-center text-xs font-bold text-[var(--color-brand-primary)] shrink-0">
+                <div key={update.id} className="flex gap-3 items-start border-b border-border pb-3 last:border-0 last:pb-0">
+                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-xs font-bold text-primary shrink-0">
                     {update.agentName?.charAt(0) || "U"}
                   </div>
                   <div>
-                    <p className="text-sm text-[var(--color-text-primary)]">
+                    <p className="text-sm text-foreground">
                       <span className="font-medium">{update.agentName || "An Agent"}</span> updated <span className="font-medium">{update.fieldName}</span>
                     </p>
-                    <p className="text-xs text-[var(--color-text-secondary)] mt-0.5">
+                    <p className="text-xs text-muted-foreground mt-0.5">
                       Changed to {update.stage}
                     </p>
-                    {update.notes && <p className="text-xs text-[var(--color-text-muted)] italic mt-1 line-clamp-2">"{update.notes}"</p>}
-                    <p className="text-[10px] text-[var(--color-text-muted)] mt-1 uppercase">
+                    {update.notes && <p className="text-xs text-muted-foreground italic mt-1 line-clamp-2">"{update.notes}"</p>}
+                    <p className="text-[10px] text-muted-foreground mt-1 uppercase">
                       {new Date(update.createdAt).toLocaleDateString()}
                     </p>
                   </div>
                 </div>
               )) : (
-                <p className="text-sm text-[var(--color-text-muted)] text-center py-4">No recent activity.</p>
+                <p className="text-sm text-muted-foreground text-center py-4">No recent activity.</p>
               )}
             </div>
           </div>
