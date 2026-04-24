@@ -12,12 +12,13 @@ model User {
   name      String
   email     String   @unique
   password  String
-  role      String   @default("FIELD_AGENT") // SQLite doesn't natively support enums, using String
+  role      String   @default("FIELD_AGENT")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  assignedFields Field[]       @relation("FieldAgent")
+  assignedFields Field[]        @relation("FieldAgent")
   updates        FieldUpdate[]
+  claimedInvite  AgentInvite?   @relation("InviteClaim")
 }
 
 model Field {
@@ -46,4 +47,17 @@ model FieldUpdate {
 
   field     Field    @relation(fields: [fieldId], references: [id], onDelete: Cascade)
   agent     User     @relation(fields: [agentId], references: [id])
+}
+
+model AgentInvite {
+  id          String    @id @default(cuid())
+  email       String    @unique
+  token       String    @unique
+  role        String    @default("FIELD_AGENT")
+  expiresAt   DateTime
+  usedAt      DateTime?
+  createdAt   DateTime  @default(now())
+
+  claimedBy   User?     @relation("InviteClaim", fields: [claimedById], references: [id])
+  claimedById String?   @unique
 }

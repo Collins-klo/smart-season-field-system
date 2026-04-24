@@ -29,10 +29,10 @@ export function AgentDashboard({ fields, user }: { fields: FieldWithUpdates[], u
         <p className="text-[var(--color-text-secondary)] text-sm">{today}</p>
       </div>
 
-      <div className="flex-1 overflow-x-auto pb-4">
-        <div className="flex gap-4 min-w-max h-full">
+      <div className="flex-1 min-h-0 pb-4">
+        <div className="grid grid-cols-4 gap-4 h-full">
           {columns.map(col => (
-            <div key={col.stage} className="w-80 flex flex-col bg-[var(--color-surface-muted)] rounded-xl border border-[var(--color-border)]">
+            <div key={col.stage} className="min-w-0 flex flex-col bg-[var(--color-surface-muted)] rounded-xl border border-[var(--color-border)]">
               <div className="p-3 border-b border-[var(--color-border)] flex justify-between items-center bg-[var(--color-surface)] rounded-t-xl">
                 <h3 className="font-medium text-[var(--color-text-primary)]">{col.title}</h3>
                 <span className="bg-[var(--color-brand-xlight)] text-[var(--color-brand-primary)] text-xs font-bold px-2 py-0.5 rounded-full">

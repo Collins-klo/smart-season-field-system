@@ -39,12 +39,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     jwt({ token, user }) {
       if (user) {
         token.role = (user as any).role;
+        token.id = user.id; // persist DB id into JWT
       }
       return token;
     },
     session({ session, token }) {
       if (session.user) {
         (session.user as any).role = token.role;
+        (session.user as any).id = token.sub; // token.sub is the user id in NextAuth v5
       }
       return session;
     },

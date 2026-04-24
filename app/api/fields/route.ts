@@ -55,19 +55,26 @@ export async function POST(req: Request) {
         location,
         agentId: agentId || null,
         stage: "PLANTED",
-        updates: {
-          create: {
-            agentId: session.user.id!,
-            stage: "PLANTED",
-            notes: "Field created and marked as PLANTED."
-          }
-        }
+        // Only auto-create an initial update when an agent is assigned,
+        // since FieldUpdate.agentId must reference a valid Field Agent user.
+        ...(agentId
+          ? {
+              updates: {
+                create: {
+                  agentId,
+                  stage: "PLANTED",
+                  notes: "Field created and marked as PLANTED.",
+                },
+              },
+            }
+          : {}),
       },
       include: {
         updates: true,
         agent: true
       }
     });
+
 
     return NextResponse.json(field);
   } catch (error) {
