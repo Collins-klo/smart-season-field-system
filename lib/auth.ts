@@ -12,11 +12,7 @@ declare module "next-auth" {
     role: string;
   }
 }
-declare module "next-auth/jwt" {
-  interface JWT {
-    role?: string;
-  }
-}
+
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
@@ -60,7 +56,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     },
     session({ session, token }) {
       if (session.user) {
-        session.user.role = token.role ?? "";
+        session.user.role = (token.role as string | undefined) ?? "";
         session.user.id = token.sub ?? ""; // token.sub is the user id in NextAuth v5
       }
       return session;
