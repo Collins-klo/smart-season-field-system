@@ -3,14 +3,14 @@ import { prisma } from "@/lib/prisma";
 import { auth } from "@/lib/auth";
 import { Role } from "@/types";
 
-export async function GET(req: Request) {
+export async function GET() {
   try {
     const session = await auth();
     if (!session?.user) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const role = (session.user as any).role as string;
+    const role = session.user.role;
     const userId = session.user.id;
 
     // Admin sees all fields, agent sees assigned only
@@ -35,7 +35,7 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   try {
     const session = await auth();
-    if (!session?.user || (session.user as any).role !== Role.ADMIN) {
+    if (!session?.user || session.user.role !== Role.ADMIN) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 

@@ -9,7 +9,7 @@ import { randomUUID } from "crypto";
 export async function POST(req: Request) {
   try {
     const session = await auth();
-    if (!session?.user || (session.user as any).role !== Role.ADMIN) {
+    if (!session?.user || session.user.role !== Role.ADMIN) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 

@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { Role } from "@/types";
 import bcrypt from "bcryptjs";
 
 // POST /api/agents/accept-invite — Public: claim an invite and create a user account

@@ -2,10 +2,16 @@
 
 import { LogOut, Menu } from "lucide-react";
 import { signOut } from "next-auth/react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
-export function Topbar({ user, onMenuClick }: { user: any, onMenuClick: () => void }) {
+interface TopbarUser {
+  name?: string | null;
+  role?: string | null;
+}
+
+export function Topbar({ user, onMenuClick }: { user: TopbarUser, onMenuClick: () => void }) {
   return (
     <header className="h-14 mt-4 mx-4 md:mx-6 flex flex-shrink-0 items-center justify-between px-6 rounded-full border border-border bg-card shadow-sm transition-all duration-300">
       <div className="flex items-center gap-4">
@@ -20,9 +26,11 @@ export function Topbar({ user, onMenuClick }: { user: any, onMenuClick: () => vo
       <div className="flex items-center gap-4">
         <div className="hidden sm:flex items-center gap-3">
           <div className="w-9 h-9 rounded-full overflow-hidden shadow-sm border border-border bg-[#b6e3f4] flex shrink-0 items-center justify-center p-0.5">
-            <img
+            <Image
               src={`https://robohash.org/${encodeURIComponent(user?.name || 'User')}?set=set2&size=100x100`}
               alt={user?.name || "Avatar"}
+              width={36}
+              height={36}
               className="w-full h-full object-cover"
             />
           </div>

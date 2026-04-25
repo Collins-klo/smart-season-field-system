@@ -31,7 +31,7 @@ export default async function FieldDetailPage({ params }: { params: Promise<{ id
 
   if (!field) notFound();
 
-  const role = (session.user as any).role;
+  const role = session.user.role;
   const isAgentAssigned = field.agentId === session.user.id;
   const isAdmin = role === Role.ADMIN;
   
@@ -101,7 +101,7 @@ export default async function FieldDetailPage({ params }: { params: Promise<{ id
           <Card className="border-[var(--color-border)] shadow-sm bg-[var(--color-brand-xlight)]/30">
              <CardContent className="p-4">
                 <p className="text-sm text-[var(--color-text-secondary)] italic">
-                  "Status is computed from rule-based timing and agent updates. Keep the stage up to date."
+                  {`"Status is computed from rule-based timing and agent updates. Keep the stage up to date."`}
                 </p>
              </CardContent>
           </Card>

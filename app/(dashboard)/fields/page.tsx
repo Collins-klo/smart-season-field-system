@@ -16,7 +16,7 @@ export default async function FieldsPage() {
   const session = await auth();
   if (!session?.user) redirect("/login");
 
-  const role = (session.user as any).role;
+  const role = session.user.role;
   const userId = session.user.id;
 
   const fields = await prisma.field.findMany({

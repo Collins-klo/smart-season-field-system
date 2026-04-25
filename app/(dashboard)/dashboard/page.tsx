@@ -13,7 +13,7 @@ export default async function DashboardPage() {
     redirect("/login");
   }
 
-  const role = (session.user as any).role;
+  const role = session.user.role;
   const userId = session.user.id!;
 
   // We should fetch exactly what each dashboard needs

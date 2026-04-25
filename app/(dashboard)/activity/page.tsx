@@ -10,7 +10,7 @@ export default async function ActivityPage() {
     redirect("/login");
   }
 
-  const role = (session.user as any).role;
+  const role = session.user.role;
   const userId = session.user.id!;
 
   // Fetch all necessary data

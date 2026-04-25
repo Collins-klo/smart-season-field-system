@@ -9,7 +9,7 @@ export const unstable_instant = false;
 
 export default async function AgentsPage() {
   const session = await auth();
-  if (!session?.user || (session.user as any).role !== Role.ADMIN) {
+  if (!session?.user || session.user.role !== Role.ADMIN) {
     redirect("/dashboard");
   }
 

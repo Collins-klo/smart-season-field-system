@@ -16,7 +16,7 @@ export async function POST(
     const resolvedParams = await params;
     const fieldId = resolvedParams.id;
     const userId = session.user.id;
-    const role = (session.user as any).role;
+    const role = session.user.role;
 
     const field = await prisma.field.findUnique({
       where: { id: fieldId },
@@ -39,7 +39,7 @@ export async function POST(
     }
 
     // Transaction to create update and modify field stage
-    const [update, updatedField] = await prisma.$transaction([
+    const [update] = await prisma.$transaction([
       prisma.fieldUpdate.create({
         data: {
           fieldId,

@@ -1,7 +1,22 @@
-import NextAuth from "next-auth";
+import NextAuth, { type DefaultSession } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { prisma } from "./prisma";
 import bcrypt from "bcryptjs";
+
+// Extend NextAuth types to include custom fields
+declare module "next-auth" {
+  interface Session {
+    user: DefaultSession["user"] & { role: string; id: string };
+  }
+  interface User {
+    role: string;
+  }
+}
+declare module "next-auth/jwt" {
+  interface JWT {
+    role?: string;
+  }
+}
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
@@ -38,15 +53,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   callbacks: {
     jwt({ token, user }) {
       if (user) {
-        token.role = (user as any).role;
+        token.role = (user as { role: string }).role;
         token.id = user.id; // persist DB id into JWT
       }
       return token;
     },
     session({ session, token }) {
       if (session.user) {
-        (session.user as any).role = token.role;
-        (session.user as any).id = token.sub; // token.sub is the user id in NextAuth v5
+        session.user.role = token.role ?? "";
+        session.user.id = token.sub ?? ""; // token.sub is the user id in NextAuth v5
       }
       return session;
     },

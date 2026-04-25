@@ -85,8 +85,8 @@ export default function LoginPage() {
             <div className="mt-4 text-center">
               <p className="text-xs text-[var(--color-text-muted)]">
                 Demo Accounts:<br />
-                admin@smartseason.co / admin123<br />
-                james@smartseason.co / agent123<br />
+                admin@smartseason.com / admin123<br />
+                james@smartseason.com / agent123<br />
               </p>
             </div>
           </form>

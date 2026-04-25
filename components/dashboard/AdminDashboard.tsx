@@ -125,7 +125,7 @@ export function AdminDashboard({ fields }: { fields: FieldWithDetails[] }) {
                     <p className="text-xs text-muted-foreground mt-0.5">
                       Changed to {update.stage}
                     </p>
-                    {update.notes && <p className="text-xs text-muted-foreground italic mt-1 line-clamp-2">"{update.notes}"</p>}
+                    {update.notes && <p className="text-xs text-muted-foreground italic mt-1 line-clamp-2">{`"${update.notes}"`}</p>}
                     <p className="text-[10px] text-muted-foreground mt-1 uppercase">
                       {new Date(update.createdAt).toLocaleDateString()}
                     </p>

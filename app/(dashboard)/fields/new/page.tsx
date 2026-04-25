@@ -10,10 +10,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Loader2, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
+interface AgentOption {
+  id: string;
+  name: string;
+}
+
 export default function CreateFieldPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [agents, setAgents] = useState<any[]>([]);
+  const [agents, setAgents] = useState<AgentOption[]>([]);
 
   useEffect(() => {
     // Fetch agents for the dropdown

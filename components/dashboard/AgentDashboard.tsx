@@ -1,12 +1,10 @@
 import { Field, FieldUpdate } from "@prisma/client";
-import { computeFieldStatus } from "@/lib/field-status";
 import { FieldStage } from "@/types";
 import { FieldCard } from "../fields/FieldCard";
-import { EmptyState } from "../shared/EmptyState";
 
 type FieldWithUpdates = Field & { updates: FieldUpdate[] };
 
-export function AgentDashboard({ fields, user }: { fields: FieldWithUpdates[], user: any }) {
+export function AgentDashboard({ fields, user }: { fields: FieldWithUpdates[], user: { name?: string | null } }) {
   const getFieldsByStage = (stage: FieldStage) => {
     return fields.filter(f => f.stage === stage);
   };

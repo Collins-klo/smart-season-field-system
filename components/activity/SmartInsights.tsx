@@ -66,7 +66,7 @@ export function SmartInsights({ fields, role }: { fields: FieldWithDetails[], ro
       let topAgentsCount = 0;
       let topAgentsUpdates = 0;
       
-      for (const [_, count] of sortedAgents) {
+      for (const [, count] of sortedAgents) {
         topAgentsCount++;
         topAgentsUpdates += count;
         if (topAgentsUpdates >= totalUpdates * 0.7) {

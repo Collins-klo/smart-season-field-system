@@ -27,7 +27,7 @@ async function DashboardLayoutContent({
     redirect("/login");
   }
 
-  const role = (session.user as any).role as string;
+  const role = session.user.role;
 
   return (
     <div className="flex h-screen bg-[var(--color-background)] overflow-hidden">

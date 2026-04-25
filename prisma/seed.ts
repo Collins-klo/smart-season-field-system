@@ -9,6 +9,7 @@ async function main() {
   const agentPassword = await bcrypt.hash("agent123", 10);
 
   // 1. Create Users
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const admin = await prisma.user.upsert({
     where: { email: "admin@smartseason.co" },
     update: {},

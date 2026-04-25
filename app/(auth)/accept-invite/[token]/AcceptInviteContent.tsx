@@ -28,7 +28,9 @@ export function AcceptInviteContent() {
   const token = params?.token as string;
   const router = useRouter();
 
-  const [state, setState] = useState<InviteState>({ phase: "loading" });
+  const [state, setState] = useState<InviteState>(() =>
+    token ? { phase: "loading" } : { phase: "invalid", message: "Invalid invite link." }
+  );
   const [form, setForm] = useState({ name: "", password: "", confirm: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [formError, setFormError] = useState("");
@@ -36,10 +38,7 @@ export function AcceptInviteContent() {
 
   // Validate token on mount
   useEffect(() => {
-    if (!token) {
-      setState({ phase: "invalid", message: "Invalid invite link." });
-      return;
-    }
+    if (!token) return; // already handled via lazy initializer
     fetch(`/api/agents/invite/${token}`)
       .then((res) => res.json())
       .then((data) => {

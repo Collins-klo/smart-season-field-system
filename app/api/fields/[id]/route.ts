@@ -33,7 +33,7 @@ export async function GET(
     }
 
     // Role check: Agents can only access their assigned fields
-    const role = (session.user as any).role;
+    const role = session.user.role;
     if (role !== Role.ADMIN && field.agentId !== session.user.id) {
       return new NextResponse("Unauthorized", { status: 403 });
     }
@@ -51,7 +51,7 @@ export async function PATCH(
 ) {
   try {
     const session = await auth();
-    if (!session?.user || (session.user as any).role !== Role.ADMIN) {
+    if (!session?.user || session.user.role !== Role.ADMIN) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
@@ -78,7 +78,7 @@ export async function DELETE(
 ) {
   try {
     const session = await auth();
-    if (!session?.user || (session.user as any).role !== Role.ADMIN) {
+    if (!session?.user || session.user.role !== Role.ADMIN) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
