@@ -16,9 +16,9 @@ export function AgentDashboard({ fields, user }: { fields: FieldWithUpdates[], u
     { title: "Harvested", stage: FieldStage.HARVESTED, data: getFieldsByStage(FieldStage.HARVESTED) },
   ];
 
-  const today = new Date().toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  const today = new Date().toLocaleDateString('en-KE', { timeZone: 'Africa/Nairobi', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-  const currentHour = new Date().getHours();
+  const currentHour = parseInt(new Intl.DateTimeFormat('en-KE', { timeZone: 'Africa/Nairobi', hour: 'numeric', hour12: false }).format(new Date()), 10);
   let greeting = "Good evening";
   if (currentHour < 12) {
     greeting = "Good morning";

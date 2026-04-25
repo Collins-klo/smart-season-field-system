@@ -3,10 +3,42 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Leaf } from "lucide-react";
+import { Leaf, Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+
+function DemoAccountRow({ email, pass }: { email: string; pass: string }) {
+  const [copiedSection, setCopiedSection] = useState<"email" | "pass" | null>(null);
+
+  const handleCopy = (text: string, section: "email" | "pass") => {
+    navigator.clipboard.writeText(text);
+    setCopiedSection(section);
+    setTimeout(() => setCopiedSection(null), 2000);
+  };
+
+  return (
+    <div className="flex items-center justify-center gap-1 mb-1.5 text-xs text-[var(--color-text-muted)]">
+      <div 
+        className="flex items-center gap-1 cursor-pointer group hover:text-[var(--color-text-primary)] transition-colors"
+        onClick={() => handleCopy(email, "email")}
+        title="Copy email"
+      >
+        <span>{email}</span>
+        {copiedSection === "email" ? <Check className="w-3 h-3 text-green-500" /> : <Copy className="w-3 h-3 text-[var(--color-text-muted)] group-hover:text-[var(--color-text-primary)] transition-colors" />}
+      </div>
+      <span className="text-[var(--color-border)] mx-1">/</span>
+      <div 
+        className="flex items-center gap-1 cursor-pointer group hover:text-[var(--color-text-primary)] transition-colors"
+        onClick={() => handleCopy(pass, "pass")}
+        title="Copy password"
+      >
+        <span>{pass}</span>
+        {copiedSection === "pass" ? <Check className="w-3 h-3 text-green-500" /> : <Copy className="w-3 h-3 text-[var(--color-text-muted)] group-hover:text-[var(--color-text-primary)] transition-colors" />}
+      </div>
+    </div>
+  );
+}
 
 export default function LoginPage() {
   const router = useRouter();
@@ -82,12 +114,11 @@ export default function LoginPage() {
             >
               {isLoading ? "Signing in..." : "Sign in"}
             </Button>
-            <div className="mt-4 text-center">
-              <p className="text-xs text-[var(--color-text-muted)]">
-                Demo Accounts:<br />
-                admin@smartseason.com / admin123<br />
-                james@smartseason.com / agent123<br />
-              </p>
+            <div className="mt-4 text-center text-xs text-[var(--color-text-muted)]">
+              <div className="mb-2">Demo Accounts:</div>
+              <DemoAccountRow email="admin@smartseason.com" pass="admin123" />
+              <DemoAccountRow email="james@smartseason.com" pass="agent123" />
+              <DemoAccountRow email="grace@smartseason.com" pass="agent123" />
             </div>
           </form>
         </CardContent>
