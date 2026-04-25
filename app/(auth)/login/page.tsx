@@ -53,11 +53,11 @@ export default function LoginPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <label htmlFor="email" className="text-sm font-medium text-[var(--color-text-primary)]">Email</label>
-              <Input 
-                id="email" 
-                type="email" 
-                placeholder="agent@smartseason.co" 
-                required 
+              <Input
+                id="email"
+                type="email"
+                placeholder="agent@smartseason.com"
+                required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="border-[var(--color-border)] focus:ring-[var(--color-ring)]"
@@ -65,28 +65,28 @@ export default function LoginPage() {
             </div>
             <div className="space-y-2">
               <label htmlFor="password" className="text-sm font-medium text-[var(--color-text-primary)]">Password</label>
-              <Input 
-                id="password" 
-                type="password" 
-                required 
+              <Input
+                id="password"
+                type="password"
+                required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="border-[var(--color-border)] focus:ring-[var(--color-ring)]"
               />
             </div>
             {error && <p className="text-sm text-[var(--color-destructive)]">{error}</p>}
-            <Button 
-              type="submit" 
-              className="w-full bg-[var(--color-brand-primary)] hover:bg-[var(--color-brand-secondary)] text-white transition-colors duration-200" 
+            <Button
+              type="submit"
+              className="w-full bg-[var(--color-brand-primary)] hover:bg-[var(--color-brand-secondary)] text-white transition-colors duration-200"
               disabled={isLoading}
             >
               {isLoading ? "Signing in..." : "Sign in"}
             </Button>
             <div className="mt-4 text-center">
               <p className="text-xs text-[var(--color-text-muted)]">
-                Demo Accounts:<br/>
-                admin@smartseason.co / admin123<br/>
-                james@smartseason.co / agent123<br/>
+                Demo Accounts:<br />
+                admin@smartseason.co / admin123<br />
+                james@smartseason.co / agent123<br />
               </p>
             </div>
           </form>

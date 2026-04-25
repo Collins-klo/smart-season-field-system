@@ -20,11 +20,19 @@ export function AgentDashboard({ fields, user }: { fields: FieldWithUpdates[], u
 
   const today = new Date().toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
+  const currentHour = new Date().getHours();
+  let greeting = "Good evening";
+  if (currentHour < 12) {
+    greeting = "Good morning";
+  } else if (currentHour < 18) {
+    greeting = "Good afternoon";
+  }
+
   return (
     <div className="space-y-6 h-full flex flex-col">
       <div>
         <h2 className="text-2xl font-heading font-semibold text-foreground">
-          Good morning, {user?.name?.split(' ')[0] || "Agent"}
+          {greeting}, {user?.name?.split(' ')[0] || "Agent"}
         </h2>
         <p className="text-muted-foreground text-sm">{today}</p>
       </div>

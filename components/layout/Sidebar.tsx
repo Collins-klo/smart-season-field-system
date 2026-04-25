@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Leaf, LayoutDashboard, Map, Users, Activity, Settings } from "lucide-react";
+import { Leaf, LayoutDashboard, Map, Users, Activity } from "lucide-react";
 
 export function Sidebar({ role }: { role: string }) {
   const pathname = usePathname();
@@ -15,14 +15,12 @@ export function Sidebar({ role }: { role: string }) {
     { name: "Fields", href: "/fields", icon: Map },
     { name: "Agents", href: "/agents", icon: Users },
     { name: "Activity Feed", href: "/activity", icon: Activity },
-    { name: "Settings", href: "/settings", icon: Settings },
   ];
 
   const agentLinks = [
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
     { name: "My Fields", href: "/fields", icon: Map },
     { name: "Activity", href: "/activity", icon: Activity },
-    { name: "Settings", href: "/settings", icon: Settings },
   ];
 
   const links = role === "ADMIN" ? adminLinks : agentLinks;
@@ -30,7 +28,7 @@ export function Sidebar({ role }: { role: string }) {
   return (
     <aside 
       className={cn(
-        "hidden md:flex flex-col border-r border-border bg-card h-full z-40 transition-[width] duration-300 ease-in-out overflow-hidden flex-shrink-0",
+        "hidden md:flex flex-col border-r border-border bg-card h-full z-40 transition-[width] duration-300 ease-in-out overflow-hidden flex-shrink-0 rounded-r-2xl",
         open ? "w-60" : "w-[72px]"
       )}
       onMouseEnter={() => setOpen(true)}
